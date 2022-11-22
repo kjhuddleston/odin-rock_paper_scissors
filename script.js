@@ -29,31 +29,17 @@ const playRound = (computerChoice, playerChoice) => {
     }
 }
 
-const game = () => {
-    let playerPoints = 0;
-    let computerPoints = 0;
-    //for (i = 0; i < 5; i++) {
-        let result = playRound(getComputerChoice(), playerChoice());
-        alert(result);
-        if (result.substring(0, 6) === 'Player') {
-            playerPoints++
-        } else if (result.substring(0, 8) === 'Computer') {
-            computerPoints++
-        }
-    //}
-    if (playerPoints === computerPoints) {
-        console.log("It's a tie!")
-    } else if (playerPoints > computerPoints) {
-        console.log("Player wins!")
-    } else {
-        console.log("Computer wins!")
-    }
-    console.log(`Player scored ${playerPoints} and the computer scored ${computerPoints}.`)
-}
+let playerPoints = 0;
+let computerPoints = 0;
 
 const body = document.querySelector('body');
+
+const scoreBoard = document.createElement('div');
+scoreBoard.innerText = `Player: ${playerPoints}\n Computer: ${computerPoints}`;
+body.appendChild(scoreBoard);
+
 const resultDisplay = document.createElement('div');
-body.appendChild(resultDisplay)
+body.appendChild(resultDisplay);
 
 const mkRockBtn = document.createElement('button');
 mkRockBtn.innerText = 'Rock';
@@ -61,7 +47,7 @@ mkRockBtn.id = 'rock';
 body.appendChild(mkRockBtn);
 const rockBtn = document.querySelector('#rock');
 rockBtn.addEventListener('click', () => {
-    resultDisplay.innerText = playRound(getComputerChoice(), 'rock');
+    game('rock');
 });
 
 const mkPaperBtn = document.createElement('button');
@@ -70,7 +56,7 @@ mkPaperBtn.id = 'paper';
 body.appendChild(mkPaperBtn);
 const paperBtn = document.querySelector('#paper');
 paperBtn.addEventListener('click', () => {
-    resultDisplay.innerText = (playRound(getComputerChoice(), 'paper'));
+    game('paper');
 });
 
 const mkScissorsBtn = document.createElement('button');
@@ -79,5 +65,29 @@ mkScissorsBtn.id = 'scissors';
 body.appendChild(mkScissorsBtn);
 const scissorsBtn = document.querySelector('#scissors');
 scissorsBtn.addEventListener('click', () => {
-    resultDisplay.innerText = (playRound(getComputerChoice(), 'scissors'));
+    game('scissors');
 });
+    
+const game = (playerChoice) => {
+    let result = playRound(getComputerChoice(), playerChoice);
+    resultDisplay.innerText = result;
+    if (result.substring(0, 6) === 'Player') {
+        playerPoints++
+    } else if (result.substring(0, 8)==='Computer') {
+        computerPoints++
+    }
+    scoreBoard.innerText = `Player: ${playerPoints}\n Computer: ${computerPoints}`;
+
+    if (playerPoints >= 5) {
+        alert('You won!');
+        playerPoints = 0;
+        computerPoints = 0;
+        scoreBoard.innerText = `Player: ${playerPoints}\n Computer: ${computerPoints}`;
+    }
+    if (computerPoints >= 5) {
+        alert('The computer wins. Try again!');
+        playerPoints = 0;
+        computerPoints = 0;
+        scoreBoard.innerText = `Player: ${playerPoints}\n Computer: ${computerPoints}`;
+    }
+}
