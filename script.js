@@ -9,10 +9,6 @@ const getComputerChoice = () => {
     }
 }
 
-const playerChoice = () => {
-    return prompt("Choose rock, paper, or scissors.").toLowerCase()
-}
-
 const playRound = (computerChoice, playerChoice) => {
     if (playerChoice === computerChoice) {
         return `Tie, both players picked ${computerChoice}!`
@@ -36,16 +32,15 @@ const playRound = (computerChoice, playerChoice) => {
 const game = () => {
     let playerPoints = 0;
     let computerPoints = 0;
-    for (i = 0; i < 5; i++) {
+    //for (i = 0; i < 5; i++) {
         let result = playRound(getComputerChoice(), playerChoice());
         alert(result);
-        console.log(result)
         if (result.substring(0, 6) === 'Player') {
             playerPoints++
         } else if (result.substring(0, 8) === 'Computer') {
             computerPoints++
         }
-    }
+    //}
     if (playerPoints === computerPoints) {
         console.log("It's a tie!")
     } else if (playerPoints > computerPoints) {
@@ -56,4 +51,33 @@ const game = () => {
     console.log(`Player scored ${playerPoints} and the computer scored ${computerPoints}.`)
 }
 
-game()
+const body = document.querySelector('body');
+const resultDisplay = document.createElement('div');
+body.appendChild(resultDisplay)
+
+const mkRockBtn = document.createElement('button');
+mkRockBtn.innerText = 'Rock';
+mkRockBtn.id = 'rock';
+body.appendChild(mkRockBtn);
+const rockBtn = document.querySelector('#rock');
+rockBtn.addEventListener('click', () => {
+    resultDisplay.innerText = playRound(getComputerChoice(), 'rock');
+});
+
+const mkPaperBtn = document.createElement('button');
+mkPaperBtn.innerText = 'Paper';
+mkPaperBtn.id = 'paper';
+body.appendChild(mkPaperBtn);
+const paperBtn = document.querySelector('#paper');
+paperBtn.addEventListener('click', () => {
+    resultDisplay.innerText = (playRound(getComputerChoice(), 'paper'));
+});
+
+const mkScissorsBtn = document.createElement('button');
+mkScissorsBtn.innerText = 'Scissors';
+mkScissorsBtn.id = 'scissors';
+body.appendChild(mkScissorsBtn);
+const scissorsBtn = document.querySelector('#scissors');
+scissorsBtn.addEventListener('click', () => {
+    resultDisplay.innerText = (playRound(getComputerChoice(), 'scissors'));
+});
