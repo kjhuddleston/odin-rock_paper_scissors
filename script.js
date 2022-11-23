@@ -70,6 +70,8 @@ const computerScore = document.querySelector('#computerScore');
 computerScore.innerText = `Computer: ${computerPoints}`;
 
 const resultDisplay = document.querySelector('#resultDisplay');
+resultDisplay.innerText = 'Lets play rock, paper, scissors, lizard, spock!\n' + 
+'\nClick a button to begin.';
 
 const rockBtn = document.querySelector('#rock');
 rockBtn.addEventListener('click', () => {
@@ -113,6 +115,7 @@ const game = (playerChoice) => {
         computerPoints = 0;
         playerScore.innerText = `Player: ${playerPoints}`;
         computerScore.innerText = `Computer: ${computerPoints}`;
+        resultDisplay.innerText = 'Lets play again!';
     }
     if (computerPoints >= 5) {
         alert('The computer wins. Try again!');
@@ -120,5 +123,6 @@ const game = (playerChoice) => {
         computerPoints = 0;
         playerScore.innerText = `Player: ${playerPoints}`;
         computerScore.innerText = `Computer: ${computerPoints}`;
+        resultDisplay.innerText = 'Lets play again!';
     }
 }

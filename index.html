@@ -6,17 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, Paper, Scissors, Lizard, Spock</title>
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="scoreboard">
-        <h3 id="playerScore"></h3>
-        <h3 id="computerScore"></h3>
+    <div id="gameContainer">
+        <h2 id="score">Score:</h2>
+        <div id="scoreboard">
+            <h3 id="playerScore" class="scores"></h3>
+            <h3 id="computerScore" class="scores"></h3>
+        </div>
+        <div id="resultDisplay"></div>
+        <div id="buttonContainer">
+            <button id="rock" class="button">Rock</button>
+            <button id="paper" class="button">Paper</button>
+            <button id="scissors" class="button">Scissors</button>
+            <button id="lizard" class="button">Lizard</button>
+            <button id="spock" class="button">Spock</button>
+        </div>
     </div>
-    <div id="resultDisplay"></div>
-    <button id="rock">Rock</button>
-    <button id="paper">Paper</button>
-    <button id="scissors">Scissors</button>
-    <button id="lizard">Lizard</button>
-    <button id="spock">Spock</button>
 </body>
 </html>
